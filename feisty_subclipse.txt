@@ -1,0 +1,9 @@
+
+
+[Subclipse-users] Failed to Load JavaHL Library
+    http://svn.haxx.se/subusers/archive-2007-04/0075.shtml
+
+2.0.55-4ubuntu4 update causes svn failure
+    https://bugs.launchpad.net/ubuntu/+source/apache2/+bug/62748/comments/42
+
+
