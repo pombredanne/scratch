@@ -1,0 +1,121 @@
+
+network manager integration
+
+apt-ftparchive wrapper
+
+remote runner
+    transfer script, run it
+
+ssh configuration manager
+    specify which hosts talk to which and it sets up all the keys
+    improve lock down of commands
+
+debian installer
+    xen installation complexity
+    earlier specification of repository
+
+vserver, openvz etc
+    instead of xen
+
+kernel
+
+build infastructure
+    cobbler?
+
+eclipse
+
+
+
+
+landscape client?
+
+
+openoffice reports thing
+   http://en.wikipedia.org/wiki/OpenDocument_software#Data_management
+      note eLawOffice.it entry
+
+python-psyco integration
+
+gtk
+    http://live.gnome.org/GtkTasks
+
+
+look at stuff from guadalinex more
+    http://forja.guadalinex.org/guadalinexv4/customize_system/
+    https://lists.ubuntu.com/archives/ubuntu-derivatives/
+
+package http://www.imperialviolet.org/jbig2.html
+    patent issues?
+
+communications
+    http://projects.collabora.co.uk/darcs/telepathy/telepathy-salut/
+    
+
+
+Script which builds conductor and trials out of working area and uploads
+to
+an adminprovider so that machines can be installed from it.
+   use a separate repository?
+
+
+make /etc/init.d/conductor start and restart block until they've
+actually
+done the work for usage in scripts
+
+dogtail hierarchy setup - otherwise automating tag procedure
+
+make trial building work without any fixed paths
+
+
+
+autopkgtest
+
+
+
+testing
+
+conductor
+
+external bug fixes
+
+development environment
+
+setup/integrate external tool
+vserver
+dogtail
+zdaemon
+puppet
+
+porting stuff
+
+
+
+python-deb822
+
+
+contact list
+static addresses, anything found by avahi
+
+
+
+http://activemq.apache.org/
+http://telepathy.freedesktop.org/wiki/Tubes - 
+http://mule.mulesource.org/display/MULE/Introduction
+
+
+
+http://lists.debian.org/debian-devel/2004/09/msg00316.html
+
+https://hosted.fedoraproject.org/projects/presto/
+http://www.novell.com/products/linuxpackages/suselinux/deltarpm.html
+uses bsdiff
+kernel-2.6.18-1.2798.fc6_2.6.20-1.2962.fc6.i586.drpm    05-Jul-2007 22:10
+7.2M
+kernel-2.6.18-1.2798.fc6_2.6.20-1.2962.fc6.i686.drpm    05-Jul-2007 22:13
+7.5M
+kernel-2.6.20-1.2952.fc6_2.6.20-1.2962.fc6.i586.drpm    05-Jul-2007 22:08
+2.3M
+kernel-2.6.20-1.2952.fc6_2.6.20-1.2962.fc6.i686.drpm    05-Jul-2007 22:11
+2.3M
+
+
