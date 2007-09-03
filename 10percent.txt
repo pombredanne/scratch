@@ -24,7 +24,11 @@ build infastructure
 
 eclipse
 
+svn-buildpackage
 
+download live environment script
+
+deb diff
 
 
 landscape client?
