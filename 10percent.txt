@@ -123,3 +123,8 @@ kernel-2.6.20-1.2952.fc6_2.6.20-1.2962.fc6.i686.drpm    05-Jul-2007 22:11
 2.3M
 
 
+large scale apt-get dist-upgrade
+  * cron job 
+     - only hear about it after
+     - ability to control when the update happens
+
