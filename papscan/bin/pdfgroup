@@ -1,0 +1,29 @@
+#!/bin/bash
+
+execheck dirname gs pdfopt || exit 1
+
+PAPERSIZE="a4"
+
+function die() {
+  echo $@ 1>2
+  exit 1
+}
+
+if (( $# < 1 )); then
+  die "usage: $0 file1.pdf [file2.pdf ...]"
+else
+  OUTPUT=$(dirname $1)/group.pdf
+  if [ -f $OUTPUT ]; then
+    die "$OUTPUT already exists"
+  fi
+  if (( $# == 1 )); then
+    mv $1 $OUTPUT || die "couldn't create $OUTPUT"
+  else
+    gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sPAPERSIZE=$PAPERSIZE \
+       -sOutputFile=$OUTPUT -c save pop -f $@ || \
+      die "couldn't create $OUTPUT"
+    pdfopt $OUTPUT $OUTPUT-opt || die "couldn't linearize group pdf"
+    mv $OUTPUT-opt $OUTPUT || die "couldn't update with linearized group pdf"
+  fi
+  echo $OUTPUT
+fi

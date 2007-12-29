@@ -1,0 +1,15 @@
+#!/bin/bash
+
+execheck pnmtops sed ps2pdf || exit 1
+
+if (( $# < 1 )); then
+  echo "usage: $0 input.pnm"
+  exit 1
+fi
+
+pnmtops $1 2>/dev/null | 
+  sed -e 's/\(^%%BoundingBox:\).*$/\1 0 0 595 842/' \
+      -e '/translate$/d' \
+      -e 's/^.* scale$/595 842 scale/' | \
+  ps2pdf -sPAPERSIZE=a4 - $1.pdf
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+[ -n "$1" ] || exit 1
+
+nice convert -monochrome $1 mono-$1
+scan-script mono-$1

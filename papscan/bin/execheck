@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for p in $@; do
+  hash $p &>/dev/null
+  if [ $? != 0 ]; then
+    echo $p not found
+    exit 1
+  fi
+done
+
+
+

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#execheck sed dirname || exit 1
+
+function exten() {
+  ext=$(echo $1 | sed -e's/^\(.*\)[.]\(.*\)$/\2/' -et -ed)
+  if [ -n "$ext" ]; then
+    echo .$ext
+  fi
+}
+
+if (( $# < 2 )); then
+  echo "usage: $0 file.ext [file.ext...] prefix"
+  exit 1
+elif [ $# == 2 ]; then
+  dir=$(dirname $1)
+  mv $1 $dir/$2$(exten $1)
+else
+  prefix=$(eval echo \$$#)
+  i=1
+  for f in $@; do
+    if [ $i != $# ]; then
+      dir=$(dirname $f)
+      mv $f $dir/$prefix.$f
+    fi
+    let "i++"
+  done
+fi
