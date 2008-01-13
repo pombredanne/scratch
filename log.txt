@@ -1,0 +1,27 @@
+
+2 Jan 2008
+
+asterisk issue with call forwarding with multiple targets in dial()
+
+http://groups.google.co.uk/group/Asterisk-users/browse_thread/thread/7592e7a404cd20f2/5ad82932ebe1ea2d
+
+forwarding with multiple dial targets
+  http://bugs.digium.com/view.php?id=2195
+i option added to dial on 1.4
+  http://bugs.digium.com/view.php?id=5657
+
+might be able todo something in 1.2 with 
+  http://www.voip-info.org/wiki/index.php?page=Asterisk+cmd+Set
+
+
+3 Jan 2008
+
+m2n4-sli hot flash
+from http://www.linuxinsight.com/how-to-flash-motherboard-bios-from-linux-no-dos-windows-no-floppy-drive.html
+    genisoimage -b FDOEM.144 FDOEM.144 | wodim driveropts=burnfree blank=fast -
+
+
+12 Jan 2008
+to try out:
+    http://codespeak.net/py/dist/test.html
+
