@@ -1,0 +1,114 @@
+
+network manager integration
+
+apt-ftparchive wrapper
+
+remote runner
+    transfer script, run it
+
+ssh configuration manager
+    specify which hosts talk to which and it sets up all the keys
+    improve lock down of commands
+
+debian installer
+    xen installation complexity
+    earlier specification of repository
+
+vserver, openvz etc
+    instead of xen
+    lguest
+
+kernel
+
+build infastructure
+    cobbler?
+
+eclipse
+
+http replication
+    PUSH clients_ids
+    PULL ids_wanted_by_server
+    PUSH nodes_wanted_by_server
+    PULL servers_ids
+    PUSH ids_wanted_by_client
+    PULL nodes_wanted_by_client
+
+
+landscape client?
+
+
+openoffice reports thing
+   http://en.wikipedia.org/wiki/OpenDocument_software#Data_management
+      note eLawOffice.it entry
+
+python-psyco integration
+
+gtk
+    http://live.gnome.org/GtkTasks
+
+
+look at stuff from guadalinex more
+    http://forja.guadalinex.org/guadalinexv4/customize_system/
+    https://lists.ubuntu.com/archives/ubuntu-derivatives/
+
+package http://www.imperialviolet.org/jbig2.html
+    patent issues?
+
+communications
+    http://projects.collabora.co.uk/darcs/telepathy/telepathy-salut/
+    
+
+
+Script which builds conductor and trials out of working area and uploads
+to
+an adminprovider so that machines can be installed from it.
+   use a separate repository?
+
+
+make /etc/init.d/conductor start and restart block until they've
+actually
+done the work for usage in scripts
+
+dogtail hierarchy setup - otherwise automating tag procedure
+
+make trial building work without any fixed paths
+
+
+
+autopkgtest
+
+
+
+testing
+
+conductor
+
+external bug fixes
+
+development environment
+
+setup/integrate external tool
+vserver
+dogtail
+zdaemon
+puppet
+
+porting stuff
+
+
+
+python-deb822
+
+
+contact list
+static addresses, anything found by avahi
+
+
+
+http://activemq.apache.org/
+http://telepathy.freedesktop.org/wiki/Tubes - 
+http://mule.mulesource.org/display/MULE/Introduction
+
+
+
+

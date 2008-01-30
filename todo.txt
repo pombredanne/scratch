@@ -2,27 +2,82 @@ ToDo
 
 gethostbyname timeout
 nano read only
-GP appointment
 
 backup
 	tomboy
 	passwords
 
-tiber hardware problems?
-    A8N-E socket 939
-
-bike bags
-
-front pannier rack
-BLACKBURN RACK FL1 STD LORIDER - £30
-Altura Orkney Pannier 56 litre per pair
-
-pvr
-
-topsfield 5800
-
-http://www.turbosat.com/acatalog/Topfield_TF5800PVR.html - £250 160gb
-http://forum.toppy.org.uk/forum/
+linuxbios mainboard
+    A8N-E socket 939?
 
 
+gedit grepfind
 
+timer applet
+    minutes only, continue timer after 0
+
+work out weirdness with sieveshell
+
+sim card reader
+    PS/SC stuff? opensc?
+
+
+builder setup package
+
+how would you configure a printer on x desktops?
+
+pipe to clipboard program
+
+n-m openvpn route setup to server with a route add -host which clashes
+if server on the same subnet
+
+
+post somewhere to see if this is right
+example run: 
+        sysadmin@edc1:~$ miniterm -p /dev/modem
+        --- Miniterm --- type Ctrl-D to quit
+        AT+CSIM=14,"A0A40000027F20"
+        +CSIM: 4,"6E00"
+        
+        OK
+        AT+CSIM=10,"A0F2000016"
+        +CSIM: 4,"6E00"
+        
+        OK
+        AT+CSIM=14,"A0A40000022FE2"
+        +CSIM: 4,"6E00"
+        
+        OK
+        
+        --- exit ---
+        sysadmin@edc1:~$ miniterm -p /dev/modem
+        --- Miniterm --- type Ctrl-D to quit
+        AT+CSIM=14,"00A40000027F20"
+        +CSIM: 4,"6B00"
+        
+        OK
+        
+        --- exit ---
+      * returned 6E00 and 6B00 indicates an error (see ETSI TS 131 101
+        V3.0.0)
+      * command break down 
+              * A0 - class (see ETSI TS 151 011 V4.15.0)
+              * A4 - command, select like cd
+              * F2 - command, status
+              * 7F20 - code for ICCID (ETSI TS 151 011 V4.15.0)
+              * so A0A4000027F20 selects the file containing ICCID
+      * AT+CSIM - see ETSI TS 127 007 V7.4.0
+      * AT+CSIM command didn't seemed to work on vodafone branded option
+        card 
+              * only otherwise tried on a sierra wireless aircard 875
+
+
+mxDateTime
+    put examples of date format in docs (for Parser)
+
+bash history saver
+    save and run select commands from bash history
+
+mythtv power
+    idle shutdown and frontend connection
+        if frontend not connected want it to shutdown on idle
