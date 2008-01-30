@@ -1,0 +1,97 @@
+
+*** NOTE: This file is out of date ***
+
+== Pre-installation checklist ==
+
+* bash (tested with 2.05b)
+
+* python (tested with 2.3.4)
+
+* sed for installation configuration
+
+* Something to start the script e.g.
+  vcron (or another crond that can run commands at startup)
+  /etc/rc.local file
+  init with agetty (or getty with similar capabilities)
+
+* sane-backends
+* sane-frontends (for scanadf)
+* ghostscript (for ps2pdf)
+* netpbm (for pnmtops)
+* imagemagick (for convert, if using monochrom)
+* PIL - python image library (if using monochrome.py)
+
+optional
+* use a separate keyboard on a ps2 mouse port with ps2key 
+  http://www.arava.co.il/matan/misc/
+
+
+== Installation ==
+
+* copy config.sh.sample to ~/papscan.sh and customize
+
+* update paths for new installation; run
+  $ su - scan
+  $ make config
+  in script directory, where "scan" is the user the script will be run as
+  (requires permission to access scanner)
+  
+* add something equvalient to this to /etc/inittab
+  c7:3:respawn:/sbin/agetty -n -l "/path/to/initscan.sh" 38400 tty7 linux
+  then 
+  # init q
+
+* (optional) use chvt (part of kbd) to switch to the right virtual console 
+  on boot
+  e.g. put "/usr/bin/chvt 7" in rc.local
+
+== Image conversion notes ==
+
+=== Lineart ===
+
+In pdf files JBIG or CCITT fax compression can be used for monochrome images.
+pnmtojbig (from netpbm) for info on jbig implementation
+ps2pdf will use CCITT compression if it detects a monochrome postscript files.
+convert -resize needs to use the Point -filter to remain in monochrome.
+reportlab doesn't appear to use CCITT compression
+
+iso paper sizes in points
+http://www.cl.cam.ac.uk/~mgk25/iso-paper-ps.txt
+http://www.cs.wisc.edu/~ghost/doc/gnu/7.05/Use.htm#Known_paper_sizes
+
+convert experiements (with ImageMagick 6.0.7)
+
+-contrast doesn't seem to help much
+experimented when using -monochrome (from gray mode scanned image)
+  gamma - use
+    all with gamma 2
+    contrast - no change?
+    dither - no change?
+    enhance - slightly worse
+    equalize - much worse
+    modulate 120 - slightly better, mainly for text on coloured background
+    modulate 100,50 - no change?
+    modulate 100,150 - no change?
+    modulate 120,150 - better as above
+    all with gamma 2 and modulate 120
+      normalize - text slightly more blurred
+  gamma vs modulate
+    gamma 2.5 looks clearer than modulate 180
+
+  reducing to 2 colors looks slightly better in gimp (2.0.4)
+    image -> mode -> indexed -> Use Black and White Palette and 
+                                                           No Colour Dithering
+
+=== Grayscale/Color ===
+
+Can use DCT/JPEG compression in pdf files.
+Can't seem to set the level of compression used (e.g. 75% etc)
+
+
+=== scanadf redesign ===
+
+running a program at the end of each page scanned --scan-script option
+
+add new swithes for
+  piping data to a command for each page scanned
+  running a program at the end of the scan <- wait for command to terminate

@@ -81,3 +81,15 @@ bash history saver
 mythtv power
     idle shutdown and frontend connection
         if frontend not connected want it to shutdown on idle
+
+mythtv web
+    cancel current recording
+    
+get disk check to run on shutdown
+    checkroot.sh
+        run before umount scriptsshould remount ro so 
+
+investigate zimbra evolution client
+
+RBH in phone search
+

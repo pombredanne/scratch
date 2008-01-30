@@ -1,0 +1,10 @@
+
+
+
+---++ zaptel rebuild after kernel upgrade
+
+# m-a --not-unpack -l 2.6.18-5-k7 build zaptel
+
+( --not-unpack required to keep agressive echo setting in zconfig.h )
+
+

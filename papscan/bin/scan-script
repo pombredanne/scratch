@@ -1,0 +1,30 @@
+#!/bin/bash
+
+pnm2pdf $1
+
+evenpagemarker="evenpagemarker"
+
+if [ "$source" = "ADF Duplex" ]; then
+  if [ -f $evenpagemarker ]; then
+    rm $evenpagemarker || echo "error removing even page marker file"
+  else
+    countinc $ADF_COUNT_FILE
+    touch $evenpagemarker || echo "error creating even page marker file"
+  fi
+elif [ "$source" = "ADF Front" -o "$source" = "ADF Back" ]; then
+  countinc $ADF_COUNT_FILE
+fi
+
+exit 0
+
+if [ "$duplex" == "both" -a "$source" == "adf" ]; then
+  if [ -f $evenpagemarker ]; then
+    rm $evenpagemarker || echo "error removing even page marker file"
+  else
+    countinc $ADF_COUNT_FILE
+    touch $evenpagemarker || echo "error creating even page marker file"
+  fi
+elif [ "$source" == "adf" ]; then
+  countinc $ADF_COUNT_FILE
+fi
+

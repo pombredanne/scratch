@@ -1,0 +1,59 @@
+
+die "please edit configuration file"
+
+# output files begin with this
+FILE_PREFIX="$(date +%d-%b-%Y_%H%M%S)"
+
+UPLOADDIR="/home/fs/scanned"
+UPLOADPERM="0660"
+
+function upload() {
+  chmod $UPLOADPERM $FILE_PREFIX*
+  mv $FILE_PREFIX* $UPLOADDIR
+}
+
+
+SCANDEV=""
+
+#SCSI_HOST_ADAPTOR=0
+#SCSI_CHANNEL=0
+#SCSI_ID=5
+#SCSI_LUN=0
+# probe scsi in case scanner was turned off when computer was switched on
+# requires root privileges
+#SCSI_PROBE="scsi_probe $SCSI_HOST_ADAPTOR $SCSI_CHANNEL $SCSI_ID $SCSI_LUN"
+
+# to keep a count of pages scanned, e.g. to know when to replace consumables
+# must be exported so sub-scripts can read it
+#export ADF_COUNT_FILE="$HOME/adf.count"
+
+# documentation for bash case statements can be found here;
+# http://www.tldp.org/LDP/abs/html/testbranch.html
+
+case "$PRESET" in
+  "1")
+    # standard flat bed scanning
+    my_scanadf -d $SCANDEV --source fb -e 1 --mode Lineart \
+        --resolution 150 --y-resolution 150 \
+        --pdfgroup group --scan-script plain
+    upload
+  ;;  
+  "2")
+    # document feeder, updating page counter if ADF_COUNT_FILE exported above
+    my_scanadf -d $SCANDEV --source adf --mode Lineart \
+                 --resolution 150 --y-resolution 150 \
+                 --duplex both --pdfgroup group --scan-script plain
+    upload
+  ;;  
+  "z")
+    # scan to printer
+    my_scanadf -d $SCANDEV --source adf --mode Lineart \
+                 --resolution 150 --y-resolution 150 \
+                 --duplex both --pdfgroup group --scan-script plain
+    pdf2ps $FILE_PREFIX.pdf - | lpr
+  ;;
+  * )
+    echo Unknown preset $PRESET
+  ;;
+esac
+

@@ -1,0 +1,97 @@
+
+=head1 NAME
+
+mozilla2ps - convert html to postscript using mozilla
+
+=head1 SYNOPSIS
+
+mozilla2ps [option]... URL file
+
+=head1 DESCRIPTION
+
+B<mozilla2ps> is an xulrunner application to allow non-interactive
+convertion of html to postscript using the gecko rendering engine.
+
+=head1 OPTIONS
+
+=over
+
+=item B<-papername> I<size name>
+
+Output on the specified paper size, e.g. Letter or A4 (default).
+
+=item B<-bgcolors> I<true|false>
+
+Print background colors
+
+=item B<-bgimages> I<true|false>
+
+Print background images
+
+=item B<-margins> I<size>
+
+Sets top, bottom, left and right margin to size (in inches, 0.5 maximum).
+
+=item B<-marginTop> I<size>
+
+=item B<-marginBottom> I<size>
+
+=item B<-marginLeft> I<size>
+
+=item B<-marginRight> I<size>
+
+Set individual margin size (in inches, 0.5 maximum).
+
+=item B<-landscape> I<true|false>
+
+Output in landscape orientation
+
+=item B<-footerCenter> I<string>
+
+Set the center footer.  The following special string contants can be used.
+Defaults to "&PT".
+
+=over
+
+=item &T
+
+Title
+
+=item &U
+
+Document URL
+
+=item &D
+
+Date/Time
+
+=item &P
+
+Page Number
+
+=item &PT
+
+Page Number "of" Page Total
+
+=back
+
+=item B<-headerCenter> I<string>
+
+Set the center header.  See the B<-footerCenter> option for the special string
+contants that can be used.  Defaults to an empty string.
+
+=back
+
+=head1 BUGS
+
+There's virtually no checking of the sanity of values parsed to B<mozilla2ps>.
+If a URL prompts for a password the tool will block at the password prompt.
+It's not possible to use proxy server.
+
+=head1 AUTHOR
+
+B<mozill2ps> was written by Michele Baldessari <michele@pupazzo.org>.  Paul 
+Schilling <paul@netkeva.com>  contributed the command line parameters support.
+This manual page was written by Tristan Hill <stan@saticed.me.uk>, for the
+Debian project (but may be used by others).
+

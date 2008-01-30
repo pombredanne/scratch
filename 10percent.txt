@@ -33,6 +33,11 @@ http replication
     PUSH ids_wanted_by_client
     PULL nodes_wanted_by_client
 
+svn-buildpackage
+
+download live environment script
+
+deb diff
 
 landscape client?
 
@@ -111,4 +116,5 @@ http://mule.mulesource.org/display/MULE/Introduction
 
 
 
+http://lists.debian.org/debian-devel/2004/09/msg00316.html
 
