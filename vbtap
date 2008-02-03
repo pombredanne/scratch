@@ -1,0 +1,21 @@
+#!/bin/sh
+# tap up and down script for virtualbox
+# based on http://www.montanalinux.org/node/561
+
+set -e
+if [ -z "$SUDO_USER" ]; then
+    gksudo -- "$0" "$@"
+else
+    case "$1" in
+        up)
+            DEV="$(/home/stan/bin/tunctl -b -u "$SUDO_USER")"
+            ifconfig "$DEV" up
+            [ -n "$2" ] && brctl addif "$2" "$DEV"
+            echo "$DEV"
+            logger -t vbtap "$@" "$DEV"
+            ;;
+        down)
+            /home/stan/bin/tunctl -d "$3"
+            ;;
+    esac
+fi
