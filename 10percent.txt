@@ -30,10 +30,6 @@ download live environment script
 
 deb diff
 
-
-landscape client?
-
-
 openoffice reports thing
    http://en.wikipedia.org/wiki/OpenDocument_software#Data_management
       note eLawOffice.it entry
@@ -53,8 +49,6 @@ package http://www.imperialviolet.org/jbig2.html
 
 communications
     http://projects.collabora.co.uk/darcs/telepathy/telepathy-salut/
-    
-
 
 Script which builds conductor and trials out of working area and uploads
 to
@@ -69,8 +63,6 @@ done the work for usage in scripts
 dogtail hierarchy setup - otherwise automating tag procedure
 
 make trial building work without any fixed paths
-
-
 
 autopkgtest
 
