@@ -87,3 +87,21 @@ sudo mount /dev/mapper/crypted /mnt
 http://excess.org/urwid/tutorial.html
 
 
+25 Feb
+http://fedoraproject.org/wiki/QA/Beaker
+https://testing.108.redhat.com/wiki/index.php/Rhts/Docs/TestWriting
+https://wiki.ubuntu.com/Testing/Suite/Desktop
+https://lists.ubuntu.com/archives/ubuntu-devel/2006-February/014979.html
+
+26 Feb
+http://debathena.mit.edu/config-packages/
+
+29 Feb
+http://www.math.sfu.ca/~cbm/aands/
+
+1 Mar
+http://www.heyu.org/
+Hacking Billy Mouth Bass in Linux
+    http://bigmouth.here-n-there.com/
+
+

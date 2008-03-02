@@ -1,0 +1,44 @@
+#!/bin/sh
+set -e
+
+setup_apt()
+{
+    local aptdir="$1"
+    local mirror="$2"
+    local distro="$3"
+    local component="$4"
+    local aptconf="$aptdir/apt.conf"
+    mkdir -p "$aptdir"
+    cat > "$aptconf" <<EOF
+Dir::Etc::SourceList "$aptdir/sources.list";
+Dir::State "$aptdir/state";
+Dir::State::status "status";
+Dir::Cache "$aptdir/cache";
+//Dir::Bin::dpkg-source "/bin/true";
+EOF
+    mkdir -p "$aptdir/state/lists/partial"
+    touch "$aptdir/state/status"
+    mkdir -p "$aptdir/cache/archives/partial"
+    
+    cat > "$aptdir/sources.list" <<EOF
+deb-src $mirror $distro $component
+EOF
+}
+
+
+if [ $# -lt 4 ]; then
+    echo "Usage: $0 mirror distro component package" 1>&2
+    exit 1 
+fi
+MIRROR="$1"
+DISTRO="$2"
+COMPONENT="$3"
+PACKAGE="$4"
+
+TMP="$(mktemp -d)"
+trap "rm -rf $TMP" EXIT
+
+setup_apt "$TMP" "$MIRROR" "$DISTRO" "$COMPONENT"
+apt-get -c "$TMP/apt.conf" update
+apt-get -c "$TMP/apt.conf" source "$PACKAGE"
+#apt-config -c $TMP/apt.conf dump
