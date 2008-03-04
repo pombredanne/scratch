@@ -16,7 +16,6 @@ debian installer
 
 vserver, openvz etc
     instead of xen
-    lguest
 
 kernel
 
@@ -25,22 +24,11 @@ build infastructure
 
 eclipse
 
-http replication
-    PUSH clients_ids
-    PULL ids_wanted_by_server
-    PUSH nodes_wanted_by_server
-    PULL servers_ids
-    PUSH ids_wanted_by_client
-    PULL nodes_wanted_by_client
-
 svn-buildpackage
 
 download live environment script
 
 deb diff
-
-landscape client?
-
 
 openoffice reports thing
    http://en.wikipedia.org/wiki/OpenDocument_software#Data_management
@@ -61,8 +49,6 @@ package http://www.imperialviolet.org/jbig2.html
 
 communications
     http://projects.collabora.co.uk/darcs/telepathy/telepathy-salut/
-    
-
 
 Script which builds conductor and trials out of working area and uploads
 to
@@ -77,8 +63,6 @@ done the work for usage in scripts
 dogtail hierarchy setup - otherwise automating tag procedure
 
 make trial building work without any fixed paths
-
-
 
 autopkgtest
 
@@ -117,4 +101,22 @@ http://mule.mulesource.org/display/MULE/Introduction
 
 
 http://lists.debian.org/debian-devel/2004/09/msg00316.html
+
+https://hosted.fedoraproject.org/projects/presto/
+http://www.novell.com/products/linuxpackages/suselinux/deltarpm.html
+uses bsdiff
+kernel-2.6.18-1.2798.fc6_2.6.20-1.2962.fc6.i586.drpm    05-Jul-2007 22:10
+7.2M
+kernel-2.6.18-1.2798.fc6_2.6.20-1.2962.fc6.i686.drpm    05-Jul-2007 22:13
+7.5M
+kernel-2.6.20-1.2952.fc6_2.6.20-1.2962.fc6.i586.drpm    05-Jul-2007 22:08
+2.3M
+kernel-2.6.20-1.2952.fc6_2.6.20-1.2962.fc6.i686.drpm    05-Jul-2007 22:11
+2.3M
+
+
+large scale apt-get dist-upgrade
+  * cron job 
+     - only hear about it after
+     - ability to control when the update happens
 
