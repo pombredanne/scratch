@@ -45,9 +45,7 @@ def my_expanduser(path, home=None):
 
 def call(cmd):
     logging.info("call:%s", " ".join(cmd))
-    retcode = subprocess.call(cmd)
-    if retcode != 0:
-        raise RuntimeError("command \"%s\" failed" % " ".join(cmd))
+    return subprocess.check_call(cmd)
 
 
 def get_mountpoints(deleted_only=False):
@@ -77,7 +75,7 @@ class Chroot(object):
     def __init__(self, root, user):
         if not os.path.isabs(root):
             raise RuntimeError("root needs to be absolute path")
-        self.root = root.rstrip("/")
+        self.root = root.rstrip(os.sep)
         if not os.path.isdir(self.root):
             raise RuntimeError("root doesn't exist")
         self.user = user
@@ -110,7 +108,7 @@ class Chroot(object):
         try:
             pwent = pwd.getpwnam(self.user)
         except KeyError:
-            print >>sys.stderr, "no such user \"%s\" in chroot" % self.user
+            sys.stderr.write("no such user \"%s\" in chroot\n" % self.user)
             sys.exit(1)
         os.setgroups(getgroups(self.user))
         os.setgid(pwent.pw_gid)
@@ -127,7 +125,7 @@ class Chroot(object):
         chroot_unmount(self.root, deleted_only=True)
         self._login()
         if extra_env:
-            os.environ.update(env)
+            os.environ.update(extra_env)
         shell = os.environ["SHELL"]
         if shell == "":
             raise RuntimeError("no shell set")
@@ -183,7 +181,7 @@ class Chroot(object):
                     ret = pickle.load(return_file)
                 except EOFError:
                     e, tb = pickle.load(exception_file)
-                    print >>sys.stderr, tb
+                    sys.stderr.write("%s\n" % tb)
                     raise e
                 os.wait()
             finally:
@@ -205,9 +203,9 @@ class Chroot(object):
         for dirname in dirs:
             self._mount_once(["--bind", dirname], dirname)
 
-    def xauth(self):
-        p = subprocess.Popen(["xauth", "extract", "-", os.environ["DISPLAY"]],
-                             stdout=subprocess.PIPE)
+    def xauth(self, display, xauthority):
+        p = subprocess.Popen(["xauth", "-f", xauthority, "extract", "-", 
+                              display], stdout=subprocess.PIPE)
         if os.fork() == 0:
             self._login()
             try:
@@ -216,7 +214,7 @@ class Chroot(object):
                 subprocess.call(["xauth", "merge", "-"], stdin=p.stdout,
                                 env=os.environ)
             except OSError:
-                print >>sys.stderr, "xauth not found"
+                sys.stderr.write("xauth not found\n")
             sys.exit(0)
         else:
             p.stdout.close()
@@ -224,7 +222,19 @@ class Chroot(object):
             os.wait()
 
 
-if __name__ == "__main__":
+def main():
+    argv = sys.argv
+    if "DISPLAY" in os.environ and "--display" not in argv:
+        argv.extend(["--display", os.environ["DISPLAY"]])
+    if "--xauthority" not in argv:
+        if "XAUTHORITY" in os.environ:
+            xauthority = os.environ["XAUTHORITY"]
+        else:
+            xauthority = os.path.expanduser("~/.Xauthority")
+        argv.extend(["--xauthority", xauthority])
+    if "SSH_AUTH_SOCK" in os.environ and "--ssh-auth-sock" not in argv:
+        argv.extend(["--ssh-auth-sock", os.environ["SSH_AUTH_SOCK"]])
+    
     parser = optparse.OptionParser(usage="%prog [options] newroot [user]")
     parser.add_option("-u", "--unmount", dest="unmount", action="store_true",
                       help="unmount all mountpoints in chroot")
@@ -232,51 +242,49 @@ if __name__ == "__main__":
                       help="be verbose")
     parser.add_option("--remove", dest="remove", action="store_true",
                       help="remove chroot")
-    options, args = parser.parse_args()
-    root = os.path.abspath(args[0])
+    parser.add_option("-r", "--gain-root-command", dest="gain_root_command",
+                      default="sudo", help="command to run to gain root")
+    parser.add_option("--ssh-auth-sock", dest="ssh_auth_sock")
+    parser.add_option("--display", dest="display")
+    parser.add_option("--xauthority", dest="xauthority")
+    options, args = parser.parse_args(argv[1:])
+    root = os.path.abspath(os.path.expanduser(args[0]))
     if len(args) > 1:
-        user = sys.argv[2]
-    elif "SUDO_USER" in os.environ:
-        user = os.environ["SUDO_USER"]
+        user = args[1]
     else:
-        user = pwd.getpwuid(os.getuid()).pw_name
-
-    if os.getuid() != 0:
-        print >>sys.stderr, "run as root"
-        sys.exit(2)
-
-    if options.verbose:
-        logging.basicConfig(level=logging.INFO)
-
-    if options.unmount:
-        chroot_unmount(root)
-        sys.exit(0)
-
-    if options.remove:
-        chroot_unmount(root)
-        distutils.dir_util.remove_tree(root)
-        sys.exit(0)
-
-    c = Chroot(root, user)
-
-    mountbinds = []
-    if "DISPLAY" in os.environ:
-        mountbinds.append("/tmp/.X11-unix")
-        c.xauth()
-    if "SSH_AUTH_SOCK" in os.environ:
-        mountbinds.append(os.path.dirname(os.environ["SSH_AUTH_SOCK"]))
-    c.mountbind(mountbinds)
-
-    copyfilesconfig = os.path.join(root, ".copyfiles")
-    if os.path.exists(copyfilesconfig):
-        copyfiles = file(copyfilesconfig).read().split()
+        user = None
+    
+    if os.geteuid() == 0:
+        if options.unmount:
+            chroot_unmount(root)
+            sys.exit(0)
+        if options.remove:
+            chroot_unmount(root)
+            distutils.dir_util.remove_tree(root)
+            sys.exit(0)
+        if options.verbose:
+            logging.basicConfig(level=logging.INFO)
+        c = Chroot(root, user)
+        env = {"TERM": os.environ["TERM"],
+               "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:"
+                       "/sbin:/bin:/usr/games"}
+        mount_binds = []
+        if options.display:
+            mount_binds.append("/tmp/.X11-unix")
+            c.xauth(options.display, options.xauthority)
+            env["DISPLAY"] = options.display
+        if options.ssh_auth_sock:
+            mount_binds.append(os.path.dirname(options.ssh_auth_sock))
+            env["SSH_AUTH_SOCK"] = options.ssh_auth_sock
+        c.mountbind(mount_binds)
+        c.login(env)
     else:
-        copyfiles = []
-    c.copyfiles(copyfiles)
+        if user is None:
+            argv.append(pwd.getpwuid(os.getuid()).pw_name)
+        os.execvp(options.gain_root_command,
+                  [options.gain_root_command, sys.executable] + argv)    
 
-    env = {}
-    varnames = ["SSH_AUTH_SOCK", "DISPLAY", "TERM", "EDITOR", "PATH"]
-    for varname in varnames:
-        if varname in os.environ:
-            env[varname] = os.environ[varname]
-    c.login(env)
+
+if __name__ == "__main__":
+    main()
+
