@@ -87,3 +87,55 @@ sudo mount /dev/mapper/crypted /mnt
 http://excess.org/urwid/tutorial.html
 
 
+25 Feb
+http://fedoraproject.org/wiki/QA/Beaker
+https://testing.108.redhat.com/wiki/index.php/Rhts/Docs/TestWriting
+https://wiki.ubuntu.com/Testing/Suite/Desktop
+https://lists.ubuntu.com/archives/ubuntu-devel/2006-February/014979.html
+
+26 Feb
+debian packages for configuration
+    http://debathena.mit.edu/config-packages/
+
+29 Feb
+Handbook of Mathematical Functions
+   http://www.math.sfu.ca/~cbm/aands/
+
+1 Mar
+http://www.heyu.org/
+Hacking Billy Mouth Bass in Linux
+    http://bigmouth.here-n-there.com/
+
+13 Mar
+wanted:
+ssh into remote machine
+run ssh-save filepath
+    transfers specified file (in background?) runs a specified program with
+    host and filepath information
+    
+    OpenSSH Unix Domain Socket Forwarding Patch
+        http://www.25thandclement.com/~william/projects/streamlocal.html 
+
+21 Mar
+dbus 0.8 changes
+    http://permalink.gmane.org/gmane.comp.freedesktop.dbus/6267
+    http://dbus.freedesktop.org/doc/dbus-python/doc/API_CHANGES.html
+
+default system PATH in debian
+
+    section 9.9 in the policy manual mentions environment but this seems
+    slightly different.
+
+    http://www.faqs.org/docs/Linux-mini/Path.html
+    
+    Discussion about /etc/environment (which contains PATH) - user logins only    
+    http://groups.google.co.uk/group/linux.debian.devel/browse_thread/thread/7855f025f8dec16e/      d2f6cb080f590aaf?lnk=st&q=%2Fetc%2Fenvironment#d2f6cb080f590aaf
+
+    http://lists.debian.org/debian-devel/1998/10/msg02159.html
+    http://lists.debian.org/debian-devel/1999/12/msg00943.html
+
+    http://lists.debian.org/debian-devel/1996/06/msg00527.html
+        notes that /usr/local might be over nfs etc
+    http://lists.debian.org/debian-devel/1996/06/msg00652.html
+    http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=227540
+
