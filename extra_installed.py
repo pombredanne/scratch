@@ -128,8 +128,12 @@ def get_recommended_deps(names):
 
 standard_packages = get_recommended_deps(["ubuntu-desktop", "ubuntu-standard",
                                           "ubuntu-minimal"])
-for package in standard_packages:
-    installed.remove(package)
+for package in list(standard_packages):
+    try:
+        installed.remove(package)
+    except ValueError:
+        sys.stderr.write('standard package "%s" not installed\n' % package)
+        standard_packages.remove(package)
 
 seen = set(standard_packages)
 for package in standard_packages:
