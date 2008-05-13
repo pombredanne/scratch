@@ -13,6 +13,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+"""
+To have a fully functional chroot you want /proc etc mounted -
+create /etc/fstab in the chroot with:
+proc /proc proc defaults 0 0
+sys /sys sysfs defaults 0 0
+devpts /dev/pts devpts defaults 0 0
+#/dev /dev none bind 0 0
+"""
+
+
+
 import distutils.dir_util
 import grp
 import optparse
