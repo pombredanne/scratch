@@ -139,3 +139,100 @@ default system PATH in debian
     http://lists.debian.org/debian-devel/1996/06/msg00652.html
     http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=227540
 
+23 Mar
+TODO: move latest in X to current dir
+openoffice templates with python
+    http://appyframework.org/version.html
+
+TODO: scanned pdf (jpeg images) to odg
+    http://opendocumentfellowship.com/projects/odfpy
+
+24 Mar
+proper way to disable service startup
+   http://www.debian.org/doc/manuals/reference/ch-system.en.html#s-custombootscripts
+
+30 Mar
+http://wiki.eclipse.org/index.php/Eclipse_FAQs
+
+muscle card
+    http://www.linuxnet.com/musclecard/index.html
+
+http://en.opensuse.org/Smart_Cards
+
+Essay links
+    http://okmij.org/ftp/Computation/
+
+5 Apr
+aniene upgrade
+m-a -l 2.6.18-6-k7 prepare
+m-a --not-unpack -l 2.6.18-6-k7 build zaptel
+
+open source line echo canceller
+    http://www.rowetel.com/ucasterisk/oslec.html
+misdn integration with oslec
+    http://peter.schlaile.de/mISDN/
+
+10 Apr
+aptitude show python-dateutil
+
+13 Apr
+http://bios-repair.co.uk/
+
+15 Apr
+http://www.htmldog.com/guides/htmladvanced/
+
+16 Apr
+func
+    http://www.redhatmagazine.com/2008/02/21/open-source-project-func-the-fedora-unified-network-controller/
+* push only (what happens with offline)?
+* needs working dns? (what happens with dynamic ips?)
+
+18 Apr
+large scale exploits and emergent threats
+    http://www.usenix.org/event/leet08/tech/
+
+19 Apr
+bcfg2 setup
+    http://trac.mcs.anl.gov/projects/bcfg2/wiki/Cfg
+
+20 Apr
+http://eclecti.cc/olpc/face-detection-on-the-olpc-xo
+
+22 Apr
+Unofficial ATI Linux Wiki
+    http://wiki.cchtml.com/index.php/Main_Page
+
+23 Apr
+find where a file has been tagged
+    http://groups.google.com/group/trac-users/browse_thread/thread/df41a8a143ad5402/3fd552e90254a9b6?lnk=gst&q=tags+of+file#3fd552e90254a9b6
+
+26 Apr
+xmlrpc over ssh
+    http://pyxmlrpcssh.sourceforge.net/
+
+27 Apr
+bcfg2 -q -v -C client.conf -u nimitz -d
+
+7 May 
+http://education-portal.com/articles/5_Sources_for_Free_Computer_Technology_Education_Online.html
+
+Book: A History of Interest Rates (Wiley Finance)
+
+10 May
+bcfg2
+    http://trac.mcs.anl.gov/projects/bcfg2/wiki/WritingSpecification
+
+Django Modified Preorder Tree Traversal
+    http://code.google.com/p/django-mptt/
+        http://dev.mysql.com/tech-resources/articles/hierarchical-data.html
+
+Patterns for things that change with time
+    http://martinfowler.com/ap2/timeNarrative.html
+    from
+        http://code.djangoproject.com/wiki/SummerOfCode2008
+
+django logging with modpython
+    http://code.djangoproject.com/ticket/5677
+
+http://code.google.com/p/django-modelversions/
+
