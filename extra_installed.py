@@ -58,6 +58,9 @@ for line in open("/var/lib/dpkg/status"):
     elif line.startswith("Depends: "):
         package["depends"], package["depends_alternatives"] = \
             process_package_list(line[len("Depends: "):-1])
+    elif line.startswith("Pre-Depends: "):
+        package["depends"], package["depends_alternatives"] = \
+            process_package_list(line[len("Pre-Depends: "):-1])
     elif line.startswith("Recommends: "):
         package["recommends"], package["recommends_alternatives"] = \
             process_package_list(line[len("Recommends: "):-1])
@@ -151,5 +154,5 @@ for name in installed:
         print name, packages[name]["rrecommends"]
 
 
-#print packages["ubuntu-desktop"].depends
+# TODO: support Pre-Depends, e.g. e2fsprogs and libss2
 
