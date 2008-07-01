@@ -1,0 +1,44 @@
+begin
+prog = irexec
+button = power
+#repeat = 100
+#delay = 10
+config = /home/stan/monitorpowerbutton.sh
+end
+
+begin
+prog = Totem
+button = resize
+config = fullscreen
+end
+
+begin
+prog = Totem
+button = teletext
+config = play_pause
+end
+
+begin
+prog = Totem
+button = volup
+config = volume_up
+end
+
+begin
+prog = Totem
+button = voldown
+config = volume_down
+end
+
+begin
+prog = Totem
+button = right
+config = seek_forward
+end
+
+begin
+prog = Totem
+button = left
+config = seek_backward
+end
+
