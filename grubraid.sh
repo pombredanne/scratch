@@ -47,20 +47,25 @@ getraid_mdadm() {
      
     echo $tmp_disks
 }
+
+
+getraid_sysfs() {
+    local device="$(basename $1)"
+    ls -1 /sys/block/"$device"/slaves
+}
+
     
 install_grubraid() {
-
-    for device in $(getraid_mdadm "$1"); do
+    for device in "$@"; do
         echo "device (hd0) $device"
         echo "root (hd0,0)"
         echo "setup (hd0)"
     done | grub --batch --no-floppy 
-
 }
 
 
 
-install_grubraid $1
+install_grubraid $(getraid_mdadm "$1")
 
 # see also 
 # http://gentoo-wiki.com/HOWTO_Gentoo_Install_on_Software_RAID#Installing_Grub_onto_both_MBRs
