@@ -236,3 +236,75 @@ django logging with modpython
 
 http://code.google.com/p/django-modelversions/
 
+15 May
+http://code.google.com/p/doctype/wiki/Welcome
+
+18 May
+Book: Introduction to Digital Filters
+    http://ccrma.stanford.edu/~jos/filters/
+
+22 May
+https://help.ubuntu.com/community/OpenVZ
+
+Open Source Content Management
+    http://www.alfresco.com/
+
+24 May
+kvm pxe boot
+    https://bugs.launchpad.net/ubuntu/+source/kvm/+bug/193531
+gnome panel resize issue
+    https://bugzilla.redhat.com/show_bug.cgi?id=165748
+yealink module doesn't seem to work - same with this libusb prog
+    http://memeteau.free.fr/usbb2k/
+
+2 Jun
+vodafone linux software to look at
+    https://forge.vodafonebetavine.net/frs/?group_id=12
+
+6 Jun
+https://wiki.ubuntu.com/NoMoreSourcePackages
+https://launchpad.net/bzr-loom
+
+8 Jun
+http://tuxmobil.org/linux_gps_navigation_applications.html
+http://www.pocketgpsworld.com/modules.php?name=Forums
+http://doc.ubuntu.com/ubuntu/serverguide/C/ubuntu-vm-builder.html
+
+"When server is not specified, the setting of LogLevel does not apply, the LogLevel is dictated by an httpd compile-time default, usually warn. "
+
+
+http://en.wikipedia.org/wiki/Efficient_market_hypothesis
+http://en.wikipedia.org/wiki/A_Random_Walk_Down_Wall_Street
+
+15 Jun
+http://linuxcentre.net/get_iplayer/get_iplayer
+
+16 Jun
+another exchange replacement
+    http://zarafa.com/
+
+http://beebhack.wikia.com/wiki/IPhone_H.264_version
+
+19 Jun
+remote kvm
+    http://www.opengear.com/product-okvmpci.html
+    http://okvm.sourceforge.net/index.html
+
+http://live.gnome.org/JhbuildIssues/mozilla
+
+25 Jun
+eclipse conference
+http://www.eclipsecon.org/2008/?page=sub/
+
+26 Jun
+http://en.wikipedia.org/wiki/Chord_keyboard
+gnome-python popt bug
+  http://bugzilla.gnome.org/show_bug.cgi?id=507174
+eds error message
+  http://bugzilla.gnome.org/show_bug.cgi?id=538620
+
+28 Jun
+oblivion on linux
+    http://www.uesp.net/wiki/Oblivion:Linux
+
+
