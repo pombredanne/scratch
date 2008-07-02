@@ -216,6 +216,8 @@ class Chroot(object):
             self._mount_once(["--bind", dirname], dirname)
 
     def xauth(self, display, xauthority):
+        if display.startswith("localhost:"):
+            display = display[len("localhost"):]
         p = subprocess.Popen(["xauth", "-f", xauthority, "extract", "-", 
                               display], stdout=subprocess.PIPE)
         if os.fork() == 0:
