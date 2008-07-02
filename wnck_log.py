@@ -8,6 +8,7 @@ import sys
 
 import gobject
 import gtk
+import gtop
 import wnck
 
 
@@ -15,7 +16,7 @@ def get_proc_name(pid):
     if pid == 0:
         return "unknown"
     else:
-        return os.path.basename(os.readlink("/proc/%d/exe" % pid))
+	return os.path.basename(gtop.proc_args(pid)[0])
 
 
 def log_window(window):
@@ -66,5 +67,6 @@ try:
     gtk.main()
 except KeyboardInterrupt:
     pass
+logging.shutdown()
 log_file.close()
 
