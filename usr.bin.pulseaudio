@@ -1,0 +1,25 @@
+#include <tunables/global>
+
+/usr/bin/pulseaudio {
+  #include <abstractions/base>
+  #include <abstractions/audio>
+  #include <abstractions/nameservice>
+  #include <abstractions/dbus>
+
+  /usr/bin/pulseaudio ixr,
+  @{HOME}/.pulse/* rwk,
+  @{HOME}/.pulse-cookie rwk,
+  /etc/pulse/* r,
+  
+#  /tmp/gconfd-*/* rw,
+#  /tmp/orbit-*/* rw,
+#  /tmp/.esd-*/* rw,
+  /tmp/pulse-*/ w,
+  /tmp/pulse-*/* rwk,
+
+  /usr/lib/pulse-0.9/modules/* m,
+
+  /dev/shm/ r,
+  /dev/shm/pulse-shm-* rw,
+
+}
