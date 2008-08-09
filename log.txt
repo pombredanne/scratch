@@ -307,4 +307,59 @@ eds error message
 oblivion on linux
     http://www.uesp.net/wiki/Oblivion:Linux
 
+4 Jul
+eee pc forum
+    http://forum.eeeuser.com/index.php
+
+5 Jul
+http://en.wikipedia.org/wiki/Hamachi
+
+http://en.wikipedia.org/wiki/Reverse_engineering
+  http://www.reverse-engineering.net/
+  http://www.crackmes.de/
+
+6 Jul
+http://gstreamer.freedesktop.org/tasks/gstreamer.html
+
+9 Jul
+groupware
+http://www.tine20.org/
+
+16 Jul
+http://www.onjava.com/pub/a/onjava/2005/03/30/eclipse.html
+
+19 Jul
+Beresford DAC
+    http://www.homehifi.co.uk/products/TC-7510.html
+
+29 Jun
+http://code.djangoproject.com/wiki/BackwardsIncompatibleChanges
+
+30 Jul
+VDSO - virtual dynamic shared object
+e.g. http://www.trilithium.com/johan/2005/08/linux-gate/
+     LD_SHOW_AUXV=1 /bin/true
+     http://manugarg.googlepages.com/aboutelfauxiliaryvectors
+
+prophet - peer to peer disconnected database
+    http://syncwith.us/
+
+Xen - How do I fix the 4gb seg fixup messages in my syslog?
+    http://wiki.xensource.com/xenwiki/XenFaq#head-e05786f1e0d6a833bc146a6096cab2d96f2b30ae
+    http://lists.xensource.com/archives/html/xen-devel/2007-12/msg00260.html
+
+2 Aug
+xen guests without xen
+   http://kraxel.fedorapeople.org/xenner/
+
+5 Aug
+automatic package building
+    http://wiki.debian.org/svnbuildstat
+
+9 Aug
+python argv modfication
+    proctitle - search python-proctitle or _proctitle.c
+    http://abock.org/2006/02/09/changing-process-name-in-mono/
+
+
 
