@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import optparse
 import os
 import urlparse
 import subprocess
@@ -9,17 +10,35 @@ import gnomevfs
 import gobject
 
 
-if __name__ == "__main__":
-    def callback(monitor_uri, info_uri, event_type):
-        if event_type in (gnomevfs.MONITOR_EVENT_CHANGED, 
-                          gnomevfs.MONITOR_EVENT_CREATED):
-            cmd = ["rsync", "-avz", urlparse.urlsplit(info_uri)[2], dest]
-            print cmd
-#            subprocess.call(cmd)
-    #    print monitor_uri, info_uri, event_type
-    dest = sys.argv[1]
-    gnomevfs.monitor_add(os.getcwd(), gnomevfs.MONITOR_DIRECTORY, callback)
+def call(*args, **kwargs):
+    #print args[0]; return 0
+    return subprocess.call(*args, **kwargs)
+
+
+def callback(monitor_uri, trigger_uri, event_type, dest):
+    #print monitor_uri, trigger_uri, event_type
+    if event_type in (gnomevfs.MONITOR_EVENT_CHANGED,
+                      gnomevfs.MONITOR_EVENT_CREATED):
+        call(["rsync", "-avz", urlparse.urlsplit(trigger_uri).path, dest])
+ 
+
+def main():
+    parser = optparse.OptionParser("%prog src dest")
+    options, args = parser.parse_args()
+    if len(args) != 2:
+        parser.error("Insufficient arguments")
+    src = args[0]
+    dest = args[1]
+    if call(["rsync", "-avz", src, dest]) != 0:
+        sys.exit(0)
+    gnomevfs.monitor_add(os.path.abspath(src), gnomevfs.MONITOR_DIRECTORY,
+                         callback, dest)
     try:
         gobject.MainLoop().run()
     except KeyboardInterrupt:
         pass
+
+
+if __name__ == "__main__":
+    main()
+
