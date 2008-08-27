@@ -361,5 +361,20 @@ python argv modfication
     proctitle - search python-proctitle or _proctitle.c
     http://abock.org/2006/02/09/changing-process-name-in-mono/
 
+10 Aug
+http://www.opencircuits.com/Main_Page
+squidbee - remote sensor platform on top of arduino
+    http://www.libelium.com/squidbee/index.php?title=Main_Page
 
+16 Aug
+zenoss debian packaging
+    http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=361253
+    http://lists.alioth.debian.org/pipermail/pkg-zenoss-team/2007-May/thread.html
+
+24 Aug
+file transfer through current ssh connection
+    http://matt.ucc.asn.au/ssh-xfer/
+    http://www.linux.com/feature/143892
+
+http://dev.iceburg.net/jquery/jqModal/#how
 

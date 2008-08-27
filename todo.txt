@@ -3,34 +3,17 @@ ToDo
 gethostbyname timeout
 nano read only
 
-backup
-	tomboy
-	passwords
-
-linuxbios mainboard
-    A8N-E socket 939?
-
-
 gedit grepfind
-
-timer applet
-    minutes only, continue timer after 0
 
 work out weirdness with sieveshell
 
 sim card reader
     PS/SC stuff? opensc?
 
-
 builder setup package
-
-how would you configure a printer on x desktops?
-
-pipe to clipboard program
 
 n-m openvpn route setup to server with a route add -host which clashes
 if server on the same subnet
-
 
 post somewhere to see if this is right
 example run: 
@@ -71,25 +54,14 @@ example run:
         card 
               * only otherwise tried on a sierra wireless aircard 875
 
-
 mxDateTime
     put examples of date format in docs (for Parser)
 
 bash history saver
     save and run select commands from bash history
 
-mythtv power
-    idle shutdown and frontend connection
-        if frontend not connected want it to shutdown on idle
-
-mythtv web
-    cancel current recording
-    
-get disk check to run on shutdown
-    checkroot.sh
-        run before umount scriptsshould remount ro so 
-
 investigate zimbra evolution client
 
-RBH in phone search
+python urllib(2) - how do you tell the size of file
+
 
