@@ -11,7 +11,7 @@ import gobject
 
 
 def call(*args, **kwargs):
-    #print args[0]; return 0
+    print args[0]#; return 0
     return subprocess.call(*args, **kwargs)
 
 
@@ -27,9 +27,11 @@ def main():
     options, args = parser.parse_args()
     if len(args) != 2:
         parser.error("Insufficient arguments")
-    src = args[0]
+    src = args[0].rstrip("/")
     dest = args[1]
-    if call(["rsync", "-avz", src, dest]) != 0:
+    os.listdir(src)
+    # i.e. like -a but not recursive
+    if call(["rsync", "-lptgoDdvz", src + "/", dest]) != 0:
         sys.exit(0)
     gnomevfs.monitor_add(os.path.abspath(src), gnomevfs.MONITOR_DIRECTORY,
                          callback, dest)
