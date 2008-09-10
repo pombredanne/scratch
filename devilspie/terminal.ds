@@ -1,0 +1,5 @@
+;(debug)
+(if (is (application_name) "Terminal")
+    (begin (geometry "776x716"))
+)
+
