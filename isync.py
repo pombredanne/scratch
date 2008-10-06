@@ -29,12 +29,17 @@ def main():
         parser.error("Insufficient arguments")
     src = args[0].rstrip("/")
     dest = args[1]
-    os.listdir(src)
-    # i.e. like -a but not recursive
-    if call(["rsync", "-lptgoDdvz", src + "/", dest]) != 0:
-        sys.exit(0)
-    gnomevfs.monitor_add(os.path.abspath(src), gnomevfs.MONITOR_DIRECTORY,
-                         callback, dest)
+    if os.path.isdir(src):
+        # i.e. like -a but not recursive
+        if call(["rsync", "-lptgoDdvz", src + "/", dest]) != 0:
+            sys.exit(0)
+        gnomevfs.monitor_add(os.path.abspath(src), gnomevfs.MONITOR_DIRECTORY,
+                             callback, dest)
+    else:
+        if call(["rsync", "-avz", src, dest]) != 0:
+            sys.exit(0)
+        gnomevfs.monitor_add(os.path.abspath(src), gnomevfs.MONITOR_FILE,
+                             callback, dest)
     try:
         gobject.MainLoop().run()
     except KeyboardInterrupt:
