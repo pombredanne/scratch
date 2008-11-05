@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import os
+import pprint
 import re
 import shutil
 import subprocess
@@ -22,9 +23,16 @@ def tmpmeld(a, b):
 
 
 def main(clipboard, text, data):
-    m = re.compile("^AssertionError: (u?'.*') != (u?'.*')$").match(text.strip())
+    text = text.strip()
+    m = re.compile("^AssertionError: (u?'.*') != (u?'.*')$").match(text)
     if m:
         tmpmeld(eval(m.group(1)), eval(m.group(2)))
+        
+    m = re.compile("^AssertionError: (\[.*\]) != (\[.*\])$").match(text)
+    if m:
+        tmpmeld(pprint.pformat(eval(m.group(1))),
+                pprint.pformat(eval(m.group(2))))
+        
     gtk.main_quit()
 
 
