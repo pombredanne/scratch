@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import doctest
+import sys
 
 packages = {}
 
@@ -46,21 +47,29 @@ for line in open("/var/lib/dpkg/status"):
                    "rdepends": [],
                    "recommends": [],
                    "recommends_alternatives": [],
-                   "rrecommends": []}
+                   "rrecommends": [],
+                   "essential": False}
         packages[package_name] = package
     elif line.startswith("Status: "):
         if not line.endswith(" installed\n"):
             del packages[package_name]
+    elif line == "Essential: yes\n":
+        if package_name in packages:
+            packages[package_name]["essential"] = True
     elif line.startswith("Provides: "):
         if package_name in packages:
             for provide in process_package_list(line[len("Provides: "):-1])[0]:
                 provides.setdefault(provide, []).append(package_name)
     elif line.startswith("Depends: "):
-        package["depends"], package["depends_alternatives"] = \
+        depends, depends_alternatives = \
             process_package_list(line[len("Depends: "):-1])
+        package["depends"].extend(depends)
+        package["depends_alternatives"].extend(depends_alternatives)
     elif line.startswith("Pre-Depends: "):
-        package["depends"], package["depends_alternatives"] = \
+        depends, depends_alternatives = \
             process_package_list(line[len("Pre-Depends: "):-1])
+        package["depends"].extend(depends)
+        package["depends_alternatives"].extend(depends_alternatives)
     elif line.startswith("Recommends: "):
         package["recommends"], package["recommends_alternatives"] = \
             process_package_list(line[len("Recommends: "):-1])
@@ -138,6 +147,7 @@ for package in list(standard_packages):
         sys.stderr.write('standard package "%s" not installed\n' % package)
         standard_packages.remove(package)
 
+
 seen = set(standard_packages)
 for package in standard_packages:
     for name in deps_generator(package, ("depends",), seen):
@@ -150,7 +160,8 @@ for package in standard_packages:
 
 installed.sort()
 for name in installed:
-    if len(packages[name]["rdepends"]) == 0:
+    if (len(packages[name]["rdepends"]) == 0 and
+            not packages[name]["essential"]):
         print name, packages[name]["rrecommends"]
 
 

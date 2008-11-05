@@ -3,7 +3,7 @@ prog = irexec
 button = power
 #repeat = 100
 #delay = 10
-config = /home/stan/monitorpowerbutton.sh
+config = xset -display :0.0 dpms force off
 end
 
 begin
@@ -42,3 +42,8 @@ button = left
 config = seek_backward
 end
 
+begin
+prog = Rhythmbox
+button = teletext
+config = playpause
+end

@@ -58,10 +58,14 @@ mxDateTime
     put examples of date format in docs (for Parser)
 
 bash history saver
-    save and run select commands from bash history
+    save and run *select* commands from bash history
 
 investigate zimbra evolution client
 
 python urllib(2) - how do you tell the size of file
+
+rsync dry run mode that can extract amount of data to be extracted from
+
+ssh client with nx compression builtin
 
 

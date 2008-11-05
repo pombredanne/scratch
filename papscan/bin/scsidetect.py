@@ -8,6 +8,7 @@ import time
 def slurp(*path):
     return open(os.path.join(*path)).read().rstrip()
 
+
 def get_sg_device(vendor, model, buspath="/sys/bus/scsi/devices"):
     for device in os.listdir(buspath):
         syspath = os.path.join(buspath, device)

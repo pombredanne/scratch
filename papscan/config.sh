@@ -7,9 +7,13 @@ UPLOADPERM="0660"
 UPLOADGROUP="cehmain"
 
 function upload() {
-  chmod $UPLOADPERM $FILE_PREFIX*
-  chgrp $UPLOADGROUP $FILE_PREFIX*
-  mv $FILE_PREFIX* $UPLOADDIR
+  #chmod $UPLOADPERM $FILE_PREFIX*
+  #chgrp $UPLOADGROUP $FILE_PREFIX*
+  #mv $FILE_PREFIX* $UPLOADDIR
+  local i
+  for i in $FILE_PREFIX*; do
+    gnomevfs-copy "$i" smb://guest@tiber/scanned
+  done
 }
 
 SGDEV="$(scsidetect.py aic7xxx 5 FUJITSU fi-4220Cdj)"
@@ -80,6 +84,18 @@ case "$PRESET" in
 		 --pdfgroup group --scan-script monochrome.py
     upload
   ;;
+  "x")
+    my_scanadf -d $SCANDEV --source Flatbed -e 5 --mode Color \
+        --resolution 150 --y-resolution 150 \
+	--pdfgroup group --scan-script monochrome
+    upload
+  ;;
+  "y")
+    my_scanadf -d $SCANDEV --source Flatbed --mode Gray \
+                 --resolution 150 --y-resolution 150 -e 1 \
+		 --scan-script plain
+    pdf2ps $FILE_PREFIX.pdf - | lpr
+  ;;
   "z")
     # scan to printer
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
@@ -87,14 +103,8 @@ case "$PRESET" in
 		 --pdfgroup group --scan-script plain
     pdf2ps $FILE_PREFIX.pdf - | lpr
   ;;
-  "x")
-    my_scanadf -d $SCANDEV --source Flatbed -e 5 --mode Color \
-        --resolution 150 --y-resolution 150 \
-	--pdfgroup group --scan-script monochrome
-    upload
-  ;;
   "t")
-    my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+    my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
         --resolution 150 --y-resolution 150 --duplex both \
 	--pdfgroup group --scan-script monochrome.py
     upload
@@ -105,7 +115,7 @@ case "$PRESET" in
 	--pdfgroup group --scan-script monochrome.py
     upload
   ;;
-  b)
+  "b")
     my_scanadf -d $SCANDEV --source "Flatbed" --mode Gray \
                  --resolution 200 --y-resolution 200 -e 1 \
 		 --pdfgroup group --scan-script monochrome.py

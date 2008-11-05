@@ -378,3 +378,103 @@ file transfer through current ssh connection
 
 http://dev.iceburg.net/jquery/jqModal/#how
 
+31 Aug
+network management
+   http://wiki.untangle.com/index.php/Main_Page
+
+2 Sep
+server performance monitoring
+    http://collectd.org/features.shtml
+
+3 Sep
+nagios email check delivery
+    http://www.nagiosexchange.org/cgi-bin/page.cgi?g=Detailed%2F1856.html;d=1
+
+5 Sep
+GPS with software radio
+    http://www.gps-sdr.com/
+    
+6 Sep
+asterisk guis
+    http://cogoblue.com/
+    http://www.ragui.net (ror, newish)
+    druid - http://demo.voiceroute.org/druid/index.php#_ManageUsers
+    asterisk gui - http://asterisknow.org/developers/gui-guide
+    http://www.voiceone.it/index.php?synSiteLang=2
+
+8 Sep
+antec psu failure
+   http://www.pjrc.com/about/rambling/antec.html
+
+server:
+ssh -L 5000:localhost:5000 naruto
+nxproxy -C link=isdn :1000
+xauth stuff
+
+client:
+nxproxy -S localhost:1000
+
+9 Sep
+xml database
+    http://exist.sourceforge.net/
+
+13 Sep
+fedora rpms source
+    http://cvs.fedoraproject.org/viewvc/rpms/
+DomainKeys Identified Mail
+    http://en.wikipedia.org/wiki/Dkim
+
+20 Sep
+open source accounting packages
+    http://www.pbooks.org/blog/open-source-accounting/
+fglrx intrepid
+    https://bugs.launchpad.net/ubuntu/intrepid/+source/fglrx-installer/+bug/247376
+
+23 Sep
+openoffice template with python
+   http://appyframework.org/pod.html
+
+25 Sep
+http://wiki.debian.org/Groupware
+
+28 Sep
+http://www.zimbra.com/forums/developers/
+http://www.press.redhat.com/2008/07/24/zimbra-leverages-red-hat-exchange-to-navigate-license-issue/
+solaris build 
+http://www.zimbra.com/forums/developers/14783-solaris-10-5-0-build-released.html
+zimbra community builds (source download)
+    http://sourceforge.net/project/showfiles.php?group_id=224243
+cvs tree - looks like the automatic updates stopped 18 months ago
+    http://www.zimbra.com/forums/announcements/793-read-only-cvs-now-available.html
+    
+18 Oct
+linux compatible mobile phones
+    http://tuxmobil.org/phones_linux.html
+    http://cihar.com/gammu/phonedb/
+
+19 Oct
+apache 2.2 webdav with winxp sp3 client
+    xp2 doesn't authenticate with basic authentication - http://www.deltadevelopment.de/users/christoph/webdav/
+    auth setup - http://httpd.apache.org/docs/2.2/mod/mod_auth_digest.html
+    
+25 Oct
+SNR margin, line attenuation
+    http://www.kitz.co.uk/adsl/linestats.htm
+    http://www.kitz.co.uk/adsl/linestats_explanation.htm
+
+27 Oct
+VoIP traffic shaping
+    http://www.howtoforge.com/voip_qos_traffic_shaping_iproute2_asterisk
+
+Relayed PPPoA - PPPoA-to-PPTP
+    http://forums.whirlpool.net.au/forum-replies-archive.cfm/680597.html
+
+4 Nov
+astshape
+
+5 Nov
+chan_lcr docs
+    http://www.linux-call-router.de/download/doc-1.2/
+
+
+

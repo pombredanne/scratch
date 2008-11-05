@@ -6,7 +6,7 @@ import os
 import shutil
 
 
-def main():
+def tmpmeld():
     tempdir = tempfile.mkdtemp(prefix="meld_")
     try:
          a = os.path.join(tempdir, "a")
@@ -19,5 +19,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    tmpmeld()
 

@@ -13,6 +13,7 @@ def ipcheck(dirname, account_filename, *args):
 
 def main(dirname, account_filename):
     hostname = open(os.path.join(dirname, account_filename)).read().split()[-1]
+    raw_input(socket.gethostbyname(hostname))
     if socket.gethostbyname(hostname) == "127.0.0.1":
 #        ipcheck(dirname, account_filename, "-r", "http://192.168.1.254"
 #        "/cgi/b/is/_ethoa_/ov/?ce=1&be=0&l0=1&l1=1&name=RoutedEthoA")
