@@ -6,7 +6,11 @@ import time
 
 
 def slurp(*path):
-    return open(os.path.join(*path)).read().rstrip()
+    p = os.path.join(*path)
+    if os.path.exists(p):
+        return open(p).read().rstrip()
+    else:
+        return None
 
 
 def get_sg_device(vendor, model, buspath="/sys/bus/scsi/devices"):
@@ -47,6 +51,7 @@ class Tests(unittest.TestCase):
     def test_get_sg_device(self):
         devicepath = os.path.join(self.tempdir, "a_device")
         os.mkdir(devicepath)
+        os.mkdir(os.path.join(self.tempdir, "somethingelse"))
         open(os.path.join(devicepath, "vendor"), "w").write("a vendor\n")
         open(os.path.join(devicepath, "model"), "w").write("a model\n")
         os.symlink("/a/path/sg0", os.path.join(devicepath, "generic"))
