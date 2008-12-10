@@ -476,5 +476,33 @@ astshape
 chan_lcr docs
     http://www.linux-call-router.de/download/doc-1.2/
 
+10 Nov
+django group by
+    http://code.djangoproject.com/ticket/3566
+
+18 Nov
+debian x10 package
+    orphaned - http://lists.debian.org/debian-wnpp/2004/08/msg01018.html
+    http://packages.debian.org/etch/x10
+
+19 Nov
+cm12 mods
+    http://idobartana.com/hakb/modifying_computer_interface.htm
+
+20 Nov
+x10 receiver circuit
+    http://www.cix.co.uk/~pplunkett/x10.htm
+
+21 Nov 
+x10 power usage
+    http://davehouston.net/x10-power.htm
+
+30 Nov
+python task execution tool
+   http://python-doit.sourceforge.net/
+
+6 Dec
+code that prints no xrandr warning
+  libxext/src/extutil.c: Xlib:  extension ...
 
 
