@@ -13,18 +13,15 @@ i option added to dial on 1.4
 might be able todo something in 1.2 with 
   http://www.voip-info.org/wiki/index.php?page=Asterisk+cmd+Set
 
-
 3 Jan 2008
 
 m2n4-sli hot flash
 from http://www.linuxinsight.com/how-to-flash-motherboard-bios-from-linux-no-dos-windows-no-floppy-drive.html
     genisoimage -b FDOEM.144 FDOEM.144 | wodim driveropts=burnfree blank=fast -
 
-
 12 Jan 2008
 to try out:
     http://codespeak.net/py/dist/test.html
-
 
 14 Jan 2008
 
@@ -505,4 +502,62 @@ python task execution tool
 code that prints no xrandr warning
   libxext/src/extutil.c: Xlib:  extension ...
 
+14 Dec
+aptitude show linux-igd
+    upnp "server"
+
+16 Dec
+lenny release notes
+    svn://svn.debian.org/svn/ddp/manuals/branches/release-notes/lenny
+openoffice hugh pdfs
+    http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=343356
+    pdftops file.pdf
+    ps2pdf file.ps file.pdf
+Free & Open Source Systems Management
+    http://www.redhat.com/spacewalk/
+
+26 Dec
+practises in team maintaining packages debconf talk
+    https://penta.debconf.org/dc8_schedule/events/238.en.html
+
+29 Dec
+speech recognition with gstreamer and python
+    http://www.speech.cs.cmu.edu/cmusphinx/moinmoin/GStreamer
+"Porting Orinoco driver to mac80211 would be a fun project, and I don't think it's impossible."
+    http://permalink.gmane.org/gmane.linux.kernel.wireless.general/1555
+
+30 Dec
+intersil prism firmware info
+    http://linux.junsun.net/intersil-prism/
+prism 2.5 broke in 2.6.27
+    http://bugzilla.kernel.org/show_bug.cgi?id=11802
+
+prism2_ioctl_siwauth
+	set HFA384X_RID_SSNHANDLINGMODE to 1
+	HFA384X_RID_CNFROAMINGMODE(0xFC2D) -> set to HFA384X_ROAMING_DISABLED(3)
+	HFA384X_RID_CNFWEPFLAGS(0xFC28) -> probably sets HFA384X_WEPFLAGS_HOSTDECRYPT(BIT(7))
+
+bug with SIOCGIWRANGE (wireless capabilites) test program
+    https://bugzilla.redhat.com/show_bug.cgi?id=466340
+
+31 Dec
+reia - erlang based scripting language
+    http://wiki.reia-lang.org/wiki/Source_Code
+
+5 Jan
+topgit - patch management in git
+    http://repo.or.cz/w/topgit.git?a=blob;f=README
+
+10 Jan
+certificate authentication with gnutls
+
+16 Jan
+ARG_MAX, maximum length of arguments for a new process
+    http://www.in-ulm.de/~mascheck/various/argmax/
+
+30 Jan
+opensource audio player firmware
+    http://www.rockbox.org/twiki/bin/view/Main/AlbumArt
+linux policy routing
+    http://www.policyrouting.org/PolicyRoutingBook/ONLINE/CH05.web.html
 
