@@ -30,10 +30,7 @@ def ecryptfs_insert_wrapped_passphrase_into_keyring(filepath, passphase):
 
     # from ecryptfs.h
     ECRYPTFS_DEFAULT_SALT_HEX = ["00", "11", "22", "33", "44", "55", "66", "77"]
-    salt = []
-    for a, b in ECRYPTFS_DEFAULT_SALT_HEX:
-        salt.append(chr(int("%s%s" % (a, b), 16)))
-    salt = "".join(salt)
+    salt = "".join([chr(int(s, 16)) for s in ECRYPTFS_DEFAULT_SALT_HEX])
 
     rc = libecryptfs.ecryptfs_insert_wrapped_passphrase_into_keyring(
         auth_tok_sig_hex, filepath, passphase, salt)
