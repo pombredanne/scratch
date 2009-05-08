@@ -16,7 +16,10 @@ def get_proc_name(pid):
     if pid == 0:
         return "unknown"
     else:
-	return os.path.basename(gtop.proc_args(pid)[0])
+    try:
+        return os.path.basename(gtop.proc_args(pid)[0])
+    except IndexError:
+        return "none"
 
 
 def log_window(window):
