@@ -12,10 +12,10 @@ def unrar_dir(top):
                     name.endswith(".rar") and ".part" not in name) or
                     name.endswith(".001")):
                 cmd = ["unrar", "x", os.path.join(root, name)]
-                subprocess.call(cmd) 
+                subprocess.call(cmd)
             
 
 if __name__ == "__main__":
     for arg in sys.argv[1:]:
         unrar_dir(arg)
-    raw_input()
+

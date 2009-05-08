@@ -17,7 +17,7 @@ def main():
     purple = dbus.Interface(obj, "im.pidgin.purple.PurpleInterface")
 
     for account in purple.PurpleAccountsGetAllActive():
-        account_name = purple.PurpleAccountGetUsername(account):
+        account_name = purple.PurpleAccountGetUsername(account)
         if args[0] in account_name:
             print "account %s disabled" % account_name
             purple.PurpleAccountSetEnabled(account, "gtk-gaim", False)
