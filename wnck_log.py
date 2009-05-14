@@ -15,7 +15,6 @@ import wnck
 def get_proc_name(pid):
     if pid == 0:
         return "unknown"
-    else:
     try:
         return os.path.basename(gtop.proc_args(pid)[0])
     except IndexError:
