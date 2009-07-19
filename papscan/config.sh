@@ -32,66 +32,77 @@ export ADF_COUNT_FILE="$HOME/adf.count"
 case "$PRESET" in
   "1")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Lineart \
+        --sleeptimer 5 --pageheight 297 \
         --resolution 150 --y-resolution 150 \
 	--pdfgroup group --scan-script plain
     upload
   ;;
   "2")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Lineart \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 150 --y-resolution 150 \
                  --duplex both --pdfgroup group --scan-script plain
     upload
   ;;
   "3")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Lineart \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 150 --y-resolution 150 \
 		 --pdfgroup single --scan-script plain
     upload
   ;;
   "4")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Lineart \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 150 --y-resolution 150 \
                  --duplex both --pdfgroup single --scan-script plain
     upload
   ;;
   "5")
     my_scanadf -d $SCANDEV --source Flatbed --mode Lineart \
+                 --sleeptimer 5 \
                  --resolution 150 --y-resolution 150 -e 1 \
 		 --scan-script plain
     upload 
   ;;
   "6")
     my_scanadf -d $SCANDEV --source Flatbed --mode Color \
+                 --sleeptimer 5 \
                  --resolution 150 --y-resolution 150 -e 1 \
 		 --scan-script plain
     upload
   ;;
   "7")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 200 --y-resolution 200 \
 		 --pdfgroup group --scan-script monochrome.py
     upload
   ;;
   "8")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 200 --y-resolution 200 \
                  --duplex both --pdfgroup group --scan-script monochrome.py
     upload
   ;;
   "9" )
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 150 --y-resolution 150 \
 		 --pdfgroup group --scan-script monochrome.py
     upload
   ;;
   "x")
     my_scanadf -d $SCANDEV --source Flatbed -e 5 --mode Color \
+                 --sleeptimer 5 \
         --resolution 150 --y-resolution 150 \
 	--pdfgroup group --scan-script monochrome
     upload
   ;;
   "y")
     my_scanadf -d $SCANDEV --source Flatbed --mode Gray \
+                 --sleeptimer 5 \
                  --resolution 150 --y-resolution 150 -e 1 \
 		 --scan-script plain
     pdf2ps $FILE_PREFIX.pdf - | lpr
@@ -99,24 +110,28 @@ case "$PRESET" in
   "z")
     # scan to printer
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
                  --resolution 150 --y-resolution 150 \
 		 --pdfgroup group --scan-script plain
     pdf2ps $FILE_PREFIX.pdf - | lpr
   ;;
   "t")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
         --resolution 150 --y-resolution 150 --duplex both \
 	--pdfgroup group --scan-script monochrome.py
     upload
   ;;
   "g")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+                 --sleeptimer 5 --pageheight 297 \
         --resolution 150 --y-resolution 150 \
 	--pdfgroup group --scan-script monochrome.py
     upload
   ;;
   "b")
     my_scanadf -d $SCANDEV --source "Flatbed" --mode Gray \
+                 --sleeptimer 5 \
                  --resolution 200 --y-resolution 200 -e 1 \
 		 --pdfgroup group --scan-script monochrome.py
   ;;
