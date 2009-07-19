@@ -1,6 +1,38 @@
 #!/bin/sh
 set -e
 
+
+#def apt_get_download(package, dest):
+#    dead_code
+#    """
+#    package name
+#    dest filepath
+#    """
+#    tempdir = tempfile.mkdtemp()
+#    try:
+#        os.makedirs(os.path.join(tempdir, "state", "lists", "partial"))
+#        os.makedirs(os.path.join(tempdir, "cache", "archives", "partial"))
+#        open(os.path.join(tempdir, "state", "status"), "w").close()
+#        shutil.copyfile("/etc/apt/sources.list",
+#                        os.path.join(tempdir, "sources.list"))
+#        config_filepath = os.path.join(tempdir, "apt.conf")
+#        open(config_filepath, "w").write("""
+#Dir::Etc::SourceList "%(tempdir)s/sources.list";
+#Dir::State "%(tempdir)s/state";
+#Dir::State::status "status";
+#Dir::Cache "%(tempdir)s/cache";
+#//Dir::Bin::dpkg-source "/bin/true";
+#""" % locals())
+#        call(["apt-get", "-c", config_filepath, "update"])
+#        call(["apt-get", "-c", config_filepath, "install", "-d", "-y", "-m", package])
+#        shutil.copyfile(glob.glob(os.path.join(tempdir, "cache", "archives",
+#                                               "%s*.deb" % package))[0],
+#                        dest)
+#    finally:
+#        distutils.dir_util.remove_tree(tempdir)
+
+
+
 setup_apt()
 {
     local aptdir="$1"
@@ -42,3 +74,7 @@ setup_apt "$TMP" "$MIRROR" "$DISTRO" "$COMPONENT"
 apt-get -c "$TMP/apt.conf" update
 apt-get -c "$TMP/apt.conf" source "$PACKAGE"
 #apt-config -c $TMP/apt.conf dump
+
+
+
+
