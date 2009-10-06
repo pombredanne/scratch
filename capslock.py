@@ -9,7 +9,7 @@ def caps_on(display=None):
     if display is None:
         display = os.environ["DISPLAY"]
     libx11 = ctypes.cdll.LoadLibrary("libX11.so.6")
-    d = libx11.XOpenDisplay(os.environ["DISPLAY"])
+    d = libx11.XOpenDisplay(display)
     if not d:
         raise RuntimeError("couldn't open display")
     w = libx11.XDefaultRootWindow(d)
