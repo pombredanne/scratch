@@ -22,8 +22,8 @@ def send_x10(address, command):
     command = command.lower()
     m = address_re.match(address)
     if m is not None and command in commands_map:
-        cmd = ["perl", "-I", DIR, os.path.join(DIR, "eg", "eg_cm11.plx"),
-            "/dev/ttyUSB0"]
+        cmd = ["perl", "-I", DIR, os.path.join(DIR, "eg_cm11.plx"),
+            "/dev/ttyUSB1"]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
         p.stdin.write("%s\n" % address)
         p.stdin.write("%s%s\n" % (m.group("housecode"),
