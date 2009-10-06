@@ -23,20 +23,25 @@ def daemonize():
 
 
 def main(hostname):
-    call = subprocess.check_call
+    call = subprocess.call
     started = True 
     stopped = True
     while True:
-        if socket.gethostbyname(hostname) == "127.0.0.1":
-            if started:
-                call(["/etc/init.d/openvpn", "stop"])
-                started = False
-                stopped = True
+        try:
+            address = socket.gethostbyname(hostname)
+        except:
+            pass
         else:
-            if stopped:
-                call(["/etc/init.d/openvpn", "start"])
-                started = True
-                stopped = False 
+            if address == "127.0.0.1":
+                if started:
+                    call(["/etc/init.d/openvpn", "stop"])
+                    started = False
+                    stopped = True
+            else:
+                if stopped:
+                    call(["/etc/init.d/openvpn", "start"])
+                    started = True
+                    stopped = False 
         time.sleep(5.0)
 
 
