@@ -2,6 +2,7 @@
 
 import optparse
 import os
+import urllib
 import urlparse
 import subprocess
 import sys
@@ -19,8 +20,9 @@ def callback(monitor_uri, trigger_uri, event_type, dest):
     #print monitor_uri, trigger_uri, event_type
     if event_type in (gnomevfs.MONITOR_EVENT_CHANGED,
                       gnomevfs.MONITOR_EVENT_CREATED):
-        call(["rsync", "-avz", urlparse.urlsplit(trigger_uri).path, dest])
- 
+        call(["rsync", "-avz", urllib.unquote(
+            urlparse.urlsplit(trigger_uri).path), dest])
+
 
 def main():
     parser = optparse.OptionParser("%prog src dest")
