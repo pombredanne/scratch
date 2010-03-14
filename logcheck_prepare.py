@@ -8,13 +8,13 @@ def main():
     out = []
 
     for line in sys.stdin:
-        m = re.match(r"^\w{3} [ :0-9]{11} [\w._-]+ (\w+)(\[\d+\])?: ", line)
+        m = re.match(r"^\w{3} [ :0-9]{11} [\w._-]+ (\w+)(\[\d+\])?: (.*)", line)
         if m:
             if m.group(2):
             	pid_re = r"\[[[:digit:]]+\]"
             else:
             	pid_re = ""
-            out.append(r"^\w{3} [ :0-9]{11} [._[:alnum:]-]+ %s%s: " % (m.group(1), pid_re))
+            out.append(r"^\w{3} [ :0-9]{11} [._[:alnum:]-]+ %s%s: %s$" % (m.group(1), pid_re, m.group(3)))
 
     print "\n".join(out)
 
