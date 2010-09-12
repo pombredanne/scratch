@@ -51,24 +51,25 @@ class WindowLogger(object):
         return False
 
 
-log_filepath = os.path.expanduser("~/.wnck.log")
-log_file = open(log_filepath, "a")
-try:
-    fcntl.lockf(log_file, fcntl.LOCK_EX|fcntl.LOCK_NB)
-except IOError, e:
-    if e.errno in (errno.EACCES, errno.EAGAIN):
-        sys.exit(1)
-    else:
-        raise
-logging.basicConfig(format="%(asctime)s %(message)s",
-                    level=logging.INFO,
-                    stream=log_file)
-window_logger = WindowLogger()
-gobject.idle_add(window_logger.register)
-try:
-    gtk.main()
-except KeyboardInterrupt:
-    pass
-logging.shutdown()
-log_file.close()
+if __name__ == "__main__":
+    log_filepath = os.path.expanduser("~/.wnck.log")
+    log_file = open(log_filepath, "a")
+    try:
+        fcntl.lockf(log_file, fcntl.LOCK_EX|fcntl.LOCK_NB)
+    except IOError, e:
+        if e.errno in (errno.EACCES, errno.EAGAIN):
+            sys.exit("Already running")
+        else:
+            raise
+    logging.basicConfig(format="%(asctime)s %(message)s",
+                        level=logging.INFO,
+                        stream=log_file)
+    window_logger = WindowLogger()
+    gobject.idle_add(window_logger.register)
+    try:
+        gtk.main()
+    except KeyboardInterrupt:
+        pass
+    logging.shutdown()
+    log_file.close()
 
