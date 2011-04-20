@@ -1,0 +1,20 @@
+#include <tunables/global>
+
+/usr/bin/transmission {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/gnome>
+
+  /usr/bin/transmission r,
+#  @{PROC}/self/** r,
+  @{PROC}/[0-9]*/net/route r,
+  @{PROC}/[0-9]*/mounts r,
+  /usr/share/locale-langpack/** r,
+  @{HOME}/.local/share/icons/** r,
+  @{HOME}/.local/share/mime/mime.cache r,
+  @{HOME} r,
+
+  @{HOME}/.transmission/** rwk,
+  @{HOME}/.config/transmission/** rwk,
+  @{HOME}/Videos/** rw,
+}
