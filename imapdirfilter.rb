@@ -12,14 +12,24 @@ require 'yaml'
 class MailCopier
   def initialize
     file = File.new(File.expand_path('~/.imapdirfilter.yaml'))
-    config = YAML.load(file)
-    file.close
-    options = {}
-    if config['ssl']
-      options[:ssl] = {:verify_mode => OpenSSL::SSL::VERIFY_NONE}
+    if (file.stat.mode & 044) != 0
+      raise 'config should not be world readable'
     end
-    # Net::IMAP.debug = true
-    @imap = Net::IMAP.new(config['server'], options)
+    config = YAML.load(file)
+    @mailboxes = config['mailboxes']
+    file.close
+    #Net::IMAP.debug = true
+    port = Net::IMAP::PORT
+    certs = nil
+    usessl = false
+    verify = false
+    if config['ca_file']
+      port = 993
+      certs = config['ca_file']
+      usessl = true
+      verify = true
+    end
+    @imap = Net::IMAP.new(config['server'], port, usessl, certs, verify)
     @imap.login(config['user'], config['password'])
     @message_id_cache = Hash.new { |hash, key| hash[key] = Set.new }
   end
@@ -61,22 +71,9 @@ class MailCopier
     addresses += envelope.from if envelope.from
     addresses += envelope.to if envelope.to 
     addresses += envelope.cc if envelope.cc
-    mailboxes = {
-      'made.com' => 'Public/UK/Sales/Customers/Made dot com',
-      'canterbury.ac.uk' => 'Public/UK/Sales/Customers/Canterbury University',
-      'enotions.co.uk' => 'Public/UK/Sales/Customers/Enotions',
-      'evoture.co.uk' => 'Public/UK/Sales/Customers/Enotions',
-      'britglass.co.uk' => 'Public/UK/Sales/Customers/British Glass',
-      'sfm-limited.com' => 'Public/UK/Sales/Customers/SFM',
-      'virginmedia.co.uk' => 'Public/UK/Sales/Customers/Virgin Media',
-    }
-#    mailboxes = {
-#      'made.com' => 'Public/Clients/Made',
-#      'canterbury.ac.uk' => 'Public/Clients/CCCU'
-#    }
     addresses.each do |address|
-      if mailboxes.include?(address.host)
-        return mailboxes[address.host]
+      if @mailboxes.include?(address.host)
+        return @mailboxes[address.host]
       end
     end
     return nil
