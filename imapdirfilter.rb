@@ -130,26 +130,15 @@ def main
       puts opts
       exit
     end
-    # opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
-    #         options[:verbose] = v
-    #       end
-    # if ARGV.size == 0:
-    #   puts opts
-    #   exit
-    # end
   end.parse!
   copier = MailCopier.new
   # copier.list
-  #copier.get_envelopes('INBOX')
-  # copier.get_envelopes('Public/Clients/CCCU')
   count = 0
   
-  ['INBOX', 'Sent Items'].each do |mailbox|
+  ['INBOX', 'Sent Items', 'Sent'].each do |mailbox|
     count += copier.process(mailbox, options[:dryrun], limit)
     limit -= count if limit
   end
-  # copier.process('Public/Clients/Made', true)
-  #copier.process('Sent Items', options[:dryrun], options[:single])
 end
 
 if __FILE__ == $PROGRAM_NAME
