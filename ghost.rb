@@ -42,6 +42,9 @@ irc = Net::Telnet::new('Telnetmode' => false,
 nick = config['ghostnick']
 irc.cmd({'String' => "PASS *\nNICK #{nick}\nUSER #{nick} 8 * :#{nick}\n",
               'Match' => Regexp.new("^:#{nick} MODE ")})
+RPL_ENDOFWHOIS = 318
+puts irc.cmd({'String' => "WHOIS #{config['nick']}",
+              'Match' => Regexp.new("^:[.a-z]* #{RPL_ENDOFWHOIS} ")})
 puts irc.cmd({'String' => "PRIVMSG nickserv :ghost #{config['nick']} #{config['password']}",
               'Match' => /ghosted/})
 
