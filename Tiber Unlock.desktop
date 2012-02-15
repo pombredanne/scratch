@@ -1,0 +1,8 @@
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tiber Unlock
+Comment=tiber unlock
+Exec=sh -c "cd \"$(dirname %k)\"; python ecryptstarter.py tiber || read WAIT"
+Terminal=true
