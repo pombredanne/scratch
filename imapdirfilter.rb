@@ -72,8 +72,11 @@ class MailCopier
     addresses += envelope.to if envelope.to 
     addresses += envelope.cc if envelope.cc
     addresses.each do |address|
-      if @mailboxes.include?(address.host)
-        return @mailboxes[address.host]
+      unless address.host.nil?
+        host = address.host.downcase
+        if @mailboxes.include?(host)
+          return @mailboxes[host]
+        end
       end
     end
     return nil
@@ -130,6 +133,13 @@ def main
       puts opts
       exit
     end
+    # opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    #         options[:verbose] = v
+    #       end
+    # if ARGV.size == 0:
+    #   puts opts
+    #   exit
+    # end
   end.parse!
   copier = MailCopier.new
   # copier.list
