@@ -63,7 +63,7 @@ case "$PRESET" in
                  --sleeptimer 5 \
                  --resolution 150 --y-resolution 150 -e 1 \
 		 --scan-script plain
-    upload 
+    upload
   ;;
   "6")
     my_scanadf -d $SCANDEV --source Flatbed --mode Color \
@@ -77,6 +77,13 @@ case "$PRESET" in
                  --sleeptimer 5 --page-height 297 \
                  --resolution 200 --y-resolution 200 \
 		 --pdfgroup group --scan-script monochrome.py
+    upload
+  ;;
+  "r")
+    my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
+                 --sleeptimer 5 --page-height 297 \
+                 --resolution 150 --y-resolution 150 \
+                 --duplex both --pdfgroup group --scan-script plain
     upload
   ;;
   "8")
@@ -134,6 +141,13 @@ case "$PRESET" in
                  --sleeptimer 5 \
                  --resolution 200 --y-resolution 200 -e 1 \
 		 --pdfgroup group --scan-script monochrome.py
+  ;;
+  "n")
+    my_scanadf -d $SCANDEV --source "ADF Front" --mode Color \
+        --sleeptimer 5 --page-height 297 \
+        --resolution 150 --y-resolution 150 \
+	--pdfgroup group --scan-script plain
+    upload
   ;;
   * )
     echo Unknown preset $PRESET
