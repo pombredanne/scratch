@@ -139,8 +139,9 @@ case "$PRESET" in
   "b")
     my_scanadf -d $SCANDEV --source "Flatbed" --mode Gray \
                  --sleeptimer 5 \
-                 --resolution 200 -e 1 \
-		 --pdfgroup group --scan-script monochrome.py
+                 --resolution 150 -e 1 \
+		 --pdfgroup group --scan-script monochrome
+    upload
   ;;
   "n")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Color \
