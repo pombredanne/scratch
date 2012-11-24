@@ -1,15 +1,22 @@
-#!/bin/bash
+#!/usr/bin/python
 
-execheck pnmtops sed ps2pdf || exit 1
+import optparse
+import os
+import subprocess
 
-if (( $# < 1 )); then
-  echo "usage: $0 input.pnm"
-  exit 1
-fi
+if __name__ == "__main__":
+    parser = optparse.OptionParser('%prog file -- convert_opts')
+    options, args = parser.parse_args()
+    convert_args = ['-page', 'A4']
+    filepath = args[0]
+    convert_args += args[1:]
+    p = subprocess.Popen(['identify', '-format', '%[z]', filepath], stdout=subprocess.PIPE)
+    depth = p.stdout.read().strip()
+    p.wait()
+    if '-monochrome' in convert_args or depth == '1':
+        convert_args.extend(['-compress', 'Zip'])
+    else:
+        convert_args.extend(['-compress', 'JPEG', '-quality', '50'])
 
-pnmtops $1 2>/dev/null | 
-  sed -e 's/\(^%%BoundingBox:\).*$/\1 0 0 595 842/' \
-      -e '/translate$/d' \
-      -e 's/^.* scale$/595 842 scale/' | \
-  ps2pdf -sPAPERSIZE=a4 - $1.pdf
+    subprocess.call(['convert'] + convert_args + [filepath, "%s.pdf" % filepath])
 

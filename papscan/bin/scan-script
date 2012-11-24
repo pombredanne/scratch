@@ -1,6 +1,8 @@
 #!/bin/bash
 
-pnm2pdf $1
+FILE="$1"
+shift
+pnm2pdf "$FILE" -- "$@"
 
 evenpagemarker="evenpagemarker"
 
