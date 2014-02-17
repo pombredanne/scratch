@@ -11,10 +11,12 @@ def get_ip_address(ifname):
     return socket.inet_ntoa(fcntl.ioctl(
         s.fileno(),
         0x8915,  # SIOCGIFADDR
-        struct.pack('256s', bytes(ifname[:15]))
+        struct.pack('256s', bytes(ifname[:15], 'utf8'))
     )[20:24])
 
 if __name__ == '__main__':
-    address = get_ip_address(sys.argv[1])
-    print("""<html><head><title>Current IP Check</title></head><body>Current IP Address: %s</body></html>""" % address)
+    if sys.argv[1] == 'eth2' and sys.argv[2] == 'dhcp4-change':
+        address = get_ip_address(sys.argv[1])
+        with open('/var/www/checkip.html', 'w') as f:
+            f.write("""<html><head><title>Current IP Check</title></head><body>Current IP Address: %s</body></html>""" % address)
 
